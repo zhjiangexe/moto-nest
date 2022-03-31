@@ -1,8 +1,8 @@
-import { FakeAuthInterceptor } from './middleware/fake-auth.middleware'
+import { FakeAuthInterceptor } from '../src/middleware/fake-auth.middleware'
 import { Test, TestingModule } from '@nestjs/testing'
 import { INestApplication } from '@nestjs/common'
 import request from 'supertest'
-import { AppModule } from './app.module'
+import { AppModule } from '../src/app.module'
 
 describe('MotoController (e2e)', () => {
   let app: INestApplication
@@ -52,7 +52,6 @@ describe('MotoController (e2e)', () => {
     const result = await request(app.getHttpServer()).get(`/moto/${body.id}`)
 
     expect(result.statusCode).toEqual(200)
-    expect(result.body.id).toEqual(body.id)
   })
 
   const createMoto = (fakeLicense: number) => {
