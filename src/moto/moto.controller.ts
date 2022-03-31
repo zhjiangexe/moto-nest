@@ -9,12 +9,27 @@ import UpdateMoto from './updateMoto'
 export class MotoController {
   constructor(private readonly motoService: MotoService) {}
 
+  /**
+   * input a new moto
+   *
+   * @param createMoto
+   * @param req for get user id
+   * @returns Moto
+   */
   @Post()
   async createMoto(@Body() createMoto: CreateMoto, @Req() req): Promise<Moto> {
     const user: User = req.user
     return await this.motoService.createMoto(createMoto, user.userId)
   }
 
+  /**
+   * update miles
+   *
+   * @param id
+   * @param updateMoto
+   * @param req for get user id
+   * @returns
+   */
   @Put(':id')
   async updateMiles(
     @Param('id') id: number,
